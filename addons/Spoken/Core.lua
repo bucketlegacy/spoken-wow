@@ -490,13 +490,13 @@ local function RegisterSlashCommand()
     -- metatable falls back to _G: reads fall through, writes do not. A bare assignment
     -- lands in the environment, and the client never hears of the command.
     -- One scheme across the three addons: the long name and a two-or-three letter short
-    -- form. /sp here, /spq for quests, /spp for places.
+    -- form. /spk here, /spq for quests, /spp for places.
     _G.SLASH_SPOKEN1 = "/spoken"
-    _G.SLASH_SPOKEN2 = "/sp"
+    _G.SLASH_SPOKEN2 = "/spk"
     -- Spoken's page, drawn again for a setting changed here; not there on a client without it.
     local function Redraw() if Options.UpdateRows then Options:UpdateRows() end end
     -- The narrator styles by the words the settings use for them, and by the names they are
-    -- stored under, which /sp player took before.
+    -- stored under, which /spk player took before.
     local STYLES = { subtitles = "subtitle", subtitle = "subtitle", small = "minimal", minimal = "minimal",
         large = "classic", classic = "classic", dialogueui = "dialogueui", voice = "none", none = "none" }
     local function SetStyle(name)
@@ -513,24 +513,24 @@ local function RegisterSlashCommand()
         end
         return true
     end
-    -- What /sp help lists: each command by the name its setting or key binding has on Spoken's
+    -- What /spk help lists: each command by the name its setting or key binding has on Spoken's
     -- page. The words before the colon are the command's own.
     local function Help()
         local lines = {
-            { "/sp replay", L.BIND_PLAYPAUSE },
-            { "/sp skip", L.BIND_SKIP },
-            { "/sp stopall", L.BIND_STOP },
-            { "/sp style subtitles | small | large | dialogueui | voice", L.OPT_PLAYER_STYLE },
-            { "/sp narrator on | off", L.OPT_SHOW_NARRATOR },
-            { "/sp rows 1 | 2", L.TRANSCRIPT_LINES },
-            { "/sp compendium", L.OPT_COMPENDIUM_OPEN },
-            { "/sp reset", L.OPT_RESET },
-            { "/sp diagnostics", L.OPT_DIAGNOSTICS },
-            { "/sp settings", L.SETTINGS },
+            { "/spk replay", L.BIND_PLAYPAUSE },
+            { "/spk skip", L.BIND_SKIP },
+            { "/spk stopall", L.BIND_STOP },
+            { "/spk style subtitles | small | large | dialogueui | voice", L.OPT_PLAYER_STYLE },
+            { "/spk narrator on | off", L.OPT_SHOW_NARRATOR },
+            { "/spk rows 1 | 2", L.TRANSCRIPT_LINES },
+            { "/spk compendium", L.OPT_COMPENDIUM_OPEN },
+            { "/spk reset", L.OPT_RESET },
+            { "/spk diagnostics", L.OPT_DIAGNOSTICS },
+            { "/spk settings", L.SETTINGS },
         }
-        table.insert(lines, { "/sp collect", L.OPT_GATHER })
-        table.insert(lines, { "/sp send", L.OPT_GATHER_SHARE })
-        if Developer.provider then table.insert(lines, { "/sp log", "Spoken Developer" }) end
+        table.insert(lines, { "/spk collect", L.OPT_GATHER })
+        table.insert(lines, { "/spk send", L.OPT_GATHER_SHARE })
+        if Developer.provider then table.insert(lines, { "/spk log", "Spoken Developer" }) end
         print("|cff66bbffSpoken|r")
         for _, line in ipairs(lines) do print("  " .. line[1] .. ": " .. line[2]) end
     end
